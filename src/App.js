@@ -18,10 +18,10 @@ class App extends Component {
       package: "react-dat-gui",
       translateX: 400,
       translateY: 300,
-      smallDig: 1.5,
-      largeDig: 3.63,
+      smallDig: 2.5,
+      largeDig: 4.63,
 
-      middleDist: 2 + Math.sqrt(2),
+      middleDist: 2,
 
       localRotation: 45,
       mainRotation: 0,
