@@ -25,6 +25,10 @@ class App extends Component {
 
       localRotation: 45,
       mainRotation: 0,
+
+      smallArmRotation: 0,
+      largeArmRotation: 0,
+
       isAwesome: true,
       feelsLike: "#2FA1D6"
     }
@@ -40,7 +44,7 @@ class App extends Component {
         <Logo data={data} />
 
         <DatGui data={data} onUpdate={this.handleUpdate}>
-          <DatString path="package" label="Package" />
+          {/* <DatString path="package" label="Package" /> */}
           <DatNumber
             path="translateX"
             label="Translate X"
@@ -90,13 +94,28 @@ class App extends Component {
           <DatNumber
             path="mainRotation"
             label="Main rotation"
-            min={0}
-            max={90}
+            min={-45}
+            max={45}
             step={1}
           />
 
-          <DatBoolean path="isAwesome" label="Awesome?" />
-          <DatColor path="feelsLike" label="Feels Like" />
+          <DatNumber
+            path="largeArmRotation"
+            label="Large Arm Rotation"
+            min={-180}
+            max={180}
+            step={1}
+          />
+          <DatNumber
+            path="smallArmRotation"
+            label="Small Arm Rotation"
+            min={-180}
+            max={180}
+            step={1}
+          />
+
+          {/* <DatBoolean path="isAwesome" label="Awesome?" />
+          <DatColor path="feelsLike" label="Feels Like" /> */}
         </DatGui>
       </div>
     );

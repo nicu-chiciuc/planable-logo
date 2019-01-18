@@ -10,7 +10,9 @@ class Logo extends React.Component {
       largeDig,
       middleDist,
       localRotation,
-      mainRotation
+      mainRotation,
+      smallArmRotation,
+      largeArmRotation
     } = data;
 
     const newSmall = `
@@ -43,8 +45,16 @@ class Logo extends React.Component {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="600px">
         <defs>
-          <path id="shape_small" d={newSmall} />
-          <path id="shape_large" d={newLarge} />
+          <path
+            id="shape_small"
+            d={newSmall}
+            transform={`rotate(${smallArmRotation})`}
+          />
+          <path
+            id="shape_large"
+            d={newLarge}
+            transform={`rotate(${largeArmRotation})`}
+          />
 
           <clipPath id="mask_small">
             <use href="#shape_small" />
@@ -60,11 +70,26 @@ class Logo extends React.Component {
             />
           </g>
         </defs>
-        <g transform={mainTransform}>
+
+        <g id="all_small" transform={mainTransform}>
           {transforms.map((trans, i) => (
-            <use key={i} href="#lshape" transform={trans} />
+            <use key={i} fill="#51D895" href="#shape_small" transform={trans} />
           ))}
         </g>
+
+        <g id="all_large" transform={mainTransform}>
+          {transforms.map((trans, i) => (
+            <use key={i} fill="#25CE7B" href="#shape_large" transform={trans} />
+          ))}
+        </g>
+
+        <use fill="#1C9B5C" href="#all_large" clip-path="url(#all_small)" />
+
+        {/* <g transform={mainTransform}>
+          {transforms.map((trans, i) => (
+            <use key={i} fill="#51D895" href="#shape_small" />
+          ))}
+        </g> */}
       </svg>
     );
   }
