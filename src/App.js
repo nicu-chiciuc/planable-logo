@@ -117,8 +117,11 @@ class App extends Component {
             step={1}
           />
 
-          {/* <DatBoolean path="isAwesome" label="Awesome?" />
-          <DatColor path="feelsLike" label="Feels Like" /> */}
+          <DatColor path="smallColor" label="Small Arm Color" />
+          <DatColor path="largeColor" label="Large Arm Color" />
+          <DatColor path="middleColor" label="Middle Color" />
+
+          {/* <DatBoolean path="isAwesome" label="Awesome?" />*/}
         </DatGui>
       </div>
     );

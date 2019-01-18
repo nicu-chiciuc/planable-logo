@@ -45,6 +45,14 @@ class Logo extends React.Component {
       `translate(0 ${-middleTranslate}) rotate(${localRotation + 270})`
     ];
 
+    const old = (
+      <g id="all_small" transform={mainTransform}>
+        {transforms.map((trans, i) => (
+          <use key={i} href="#lshape" transform={trans} />
+        ))}
+      </g>
+    );
+
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="600px">
         <defs>
@@ -64,35 +72,48 @@ class Logo extends React.Component {
           </clipPath>
 
           <g id="lshape">
-            <use fill="#51D895" href="#shape_small" />
-            <use fill="#25CE7B" href="#shape_large" />
+            <use fill={smallColor} href="#shape_small" />
+            <use fill={largeColor} href="#shape_large" />
             <use
-              fill="#1C9B5C"
+              fill={middleColor}
               href="#shape_large"
-              clip-path="url(#mask_small)"
+              clipPath="url(#mask_small)"
             />
           </g>
+
+          <g id="all_small" transform={mainTransform}>
+            {transforms.map((trans, i) => (
+              <use
+                key={i}
+                fill="#51D895"
+                href="#shape_small"
+                transform={trans}
+              />
+            ))}
+          </g>
+
+          <g id="all_large" transform={mainTransform}>
+            {transforms.map((trans, i) => (
+              <use
+                key={i}
+                fill="#25CE7B"
+                href="#shape_large"
+                transform={trans}
+              />
+            ))}
+          </g>
+
+          <clipPath id="all_mask_small">
+            <use href="#all_small" />
+          </clipPath>
         </defs>
 
-        <g id="all_small" transform={mainTransform}>
-          {transforms.map((trans, i) => (
-            <use key={i} fill="#51D895" href="#shape_small" transform={trans} />
-          ))}
-        </g>
+        {old}
 
-        <g id="all_large" transform={mainTransform}>
-          {transforms.map((trans, i) => (
-            <use key={i} fill="#25CE7B" href="#shape_large" transform={trans} />
-          ))}
-        </g>
+        {/* <use href="#all_small" />
+        <use href="#all_large" />
 
-        <use fill="#1C9B5C" href="#all_large" clip-path="url(#all_small)" />
-
-        {/* <g transform={mainTransform}>
-          {transforms.map((trans, i) => (
-            <use key={i} fill="#51D895" href="#shape_small" />
-          ))}
-        </g> */}
+        <use fill="#1C9B5C" href="#all_large" clipPath="url(#all_mask_small)" /> */}
       </svg>
     );
   }
