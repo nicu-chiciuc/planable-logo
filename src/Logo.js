@@ -12,7 +12,10 @@ class Logo extends React.Component {
       localRotation,
       mainRotation,
       smallArmRotation,
-      largeArmRotation
+      largeArmRotation,
+      smallColor,
+      largeColor,
+      middleColor
     } = data;
 
     const newSmall = `

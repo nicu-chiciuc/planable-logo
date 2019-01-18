@@ -30,7 +30,10 @@ class App extends Component {
       largeArmRotation: 0,
 
       isAwesome: true,
-      feelsLike: "#2FA1D6"
+
+      smallColor: "#51D895",
+      largeColor: "#25CE7B",
+      middleColor: "#1C9B5C"
     }
   };
 
