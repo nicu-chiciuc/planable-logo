@@ -37,6 +37,8 @@ function toRgba(rgb, alpha) {
 
 class App extends Component {
   state = {
+    time: null,
+
     data: {
       unit: 20.43,
       linkArms: false,
@@ -74,17 +76,27 @@ class App extends Component {
     this.setState({ data });
   };
 
+  componentDidMount() {
+    window.requestAnimationFrame(this.onFrame);
+  }
+
+  onFrame = timestamp => {
+    this.setState({ time: timestamp }, () => {
+      window.requestAnimationFrame(this.onFrame);
+    });
+  };
+
   render() {
-    const { data } = this.state;
+    const { state } = this;
 
     return (
       <div className="App">
-        <Logo data={data} />
+        <Logo data={state.data} time={state.time} />
 
         {/* Uncomment to compare with the original */}
         {/* {original} */}
 
-        <DatGui data={data} onUpdate={this.handleUpdate}>
+        <DatGui data={state.data} onUpdate={this.handleUpdate}>
           {/* <DatString path="package" label="Package" /> */}
           <DatNumber path="unit" label="Unit" min={19} max={23} step={0.01} />
 

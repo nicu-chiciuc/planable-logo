@@ -2,7 +2,8 @@ import React from "react";
 
 class Logo extends React.Component {
   render() {
-    const { data } = this.props;
+    const { props } = this;
+    const { data } = props;
 
     let {
       unit,
@@ -23,8 +24,32 @@ class Logo extends React.Component {
 
     const u = unit;
 
-    smallDig -= switchLength;
-    largeDig += switchLength;
+    const [initialSmallDig, initialLargeDig] = [smallDig, largeDig];
+
+    // smallDig -= switchLength;
+    // largeDig += switchLength;
+
+    //
+
+    const duration = 3600;
+    const current = (props.time % duration) / duration;
+    const angle = current * 180;
+
+    const diff = initialLargeDig - initialSmallDig;
+
+    if (angle < 90) {
+      smallDig = initialSmallDig + current * diff * 2;
+      largeDig = initialLargeDig - current * diff * 2;
+    } else {
+      smallDig = initialSmallDig + (1 - current) * diff * 2;
+      largeDig = initialLargeDig - (1 - current) * diff * 2;
+    }
+
+    // console.log((current * 100).toFixed(2));
+
+    const switchRotation = -angle;
+
+    //
 
     if (linkArms) {
       // smallDig = (largeDig * largeDig) / (middleDist * Math.sqrt(2) + largeDig);
@@ -51,7 +76,7 @@ class Logo extends React.Component {
 
     const mainTransform = `translate(${data.translateX} ${
       data.translateY
-    }) scale(0.97 0.97) rotate(${mainRotation})`;
+    }) scale(0.97 0.97) rotate(${mainRotation + switchRotation})`;
 
     const middleTranslate = u * middleDist;
 
@@ -71,7 +96,6 @@ class Logo extends React.Component {
     );
 
     const Dot = ({ x, y }) => {
-      console.log({ x, y });
       return <circle cx={x} cy={y} fill="black" r="3" />;
     };
 
