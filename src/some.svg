@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800px" height="600px">
+    <defs>
+        <path id="shape_small" d="
+      M 22 0
+      A 22 22 0 0 1 -22 0
+      L -22 -25.804988372914934 
+      A 22 22 0 0 1 22 -25.804988372914934
+    " transform="rotate(0)"/>
+        <path id="shape_large" d="
+      M 0 22
+      A 22 22 0 0 1 0 -22
+      L 55 -22
+      A 22 22 0 0 1 55 22
+    " transform="rotate(0)"/>
+        <clipPath id="mask_small">
+            <use href="#shape_small"/>
+        </clipPath>
+        <g id="lshape">
+            <use fill="#51D895" href="#shape_small"/>
+            <use fill="#25CE7B" href="#shape_large"/>
+            <use fill="#1C9B5C" clip-path="url(#mask_small)" href="#shape_large"/>
+            <circle cx="0" cy="0" r="3" fill="black"/>
+            <circle cx="0" cy="-25.804988372914934" r="3" fill="black"/>
+            <circle cx="55" cy="0" r="3" fill="black"/>
+        </g>
+        <g id="all_small" transform="translate(400 300) scale(0.97 0.97) rotate(0)">
+            <use fill="#51D895" href="#shape_small" transform="translate(44 0) rotate(45)"/>
+            <use fill="#51D895" href="#shape_small" transform="translate(0 44) rotate(135)"/>
+            <use fill="#51D895" href="#shape_small" transform="translate(-44 0) rotate(225)"/>
+            <use fill="#51D895" href="#shape_small" transform="translate(0 -44) rotate(315)"/>
+        </g>
+        <g id="all_large" transform="translate(400 300) scale(0.97 0.97) rotate(0)">
+            <use fill="#25CE7B" href="#shape_large" transform="translate(44 0) rotate(45)"/>
+            <use fill="#25CE7B" href="#shape_large" transform="translate(0 44) rotate(135)"/>
+            <use fill="#25CE7B" href="#shape_large" transform="translate(-44 0) rotate(225)"/>
+            <use fill="#25CE7B" href="#shape_large" transform="translate(0 -44) rotate(315)"/>
+        </g>
+        <clipPath id="all_mask_small">
+            <use href="#all_small"/>
+        </clipPath>
+    </defs>
+    <g id="all_small" transform="translate(400 300) scale(0.97 0.97) rotate(0)">
+        <use href="#lshape" transform="translate(44 0) rotate(45)"/>
+        <use href="#lshape" transform="translate(0 44) rotate(135)"/>
+        <use href="#lshape" transform="translate(-44 0) rotate(225)"/>
+        <use href="#lshape" transform="translate(0 -44) rotate(315)"/>
+    </g>
+</svg>

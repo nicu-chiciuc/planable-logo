@@ -11,15 +11,42 @@ import DatGui, {
   DatString
 } from "react-dat-gui";
 import "react-dat-gui/build/react-dat-gui.css";
+import { original } from "./logo-small-colored";
+
+const colSmall = [81, 216, 149];
+const colLarge = [37, 206, 123];
+
+var coler = (final, alpha) => {
+  const c = (final - (1 - alpha) * 255) / alpha;
+  return Math.max(c, 0);
+};
+
+var rgbColer = (arr, alpha) => {
+  const nArr = arr.map(c => coler(c, alpha));
+
+  return nArr;
+};
+
+function toRgba(rgb, alpha) {
+  const [r, g, b] = rgbColer(rgb, alpha);
+
+  const c = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+
+  return c;
+}
 
 class App extends Component {
   state = {
     data: {
+      unit: 20.43,
+      linkArms: false,
+      showStuff: true,
+
       package: "react-dat-gui",
-      translateX: 400,
-      translateY: 300,
-      smallDig: 2.5,
-      largeDig: 4.63,
+      translateX: 138,
+      translateY: 138,
+      smallDig: 2.7,
+      largeDig: 5.1,
 
       middleDist: 2,
 
@@ -29,15 +56,23 @@ class App extends Component {
       smallArmRotation: 0,
       largeArmRotation: 0,
 
+      switchLength: 0,
+
       isAwesome: true,
 
-      smallColor: "#51D895",
-      largeColor: "#25CE7B",
-      middleColor: "#1C9B5C"
+      smallColor: toRgba(colSmall, 0.682353),
+      largeColor: toRgba(colLarge, 0.854902),
+      middleColor: "rgb(28, 155, 92)"
+
+      // smallColor: "#51D895"
+      // largeColor: "#25CE7B",
+      // middleColor: "#1C9B5C"
     }
   };
 
-  handleUpdate = data => this.setState({ data });
+  handleUpdate = data => {
+    this.setState({ data });
+  };
 
   render() {
     const { data } = this.state;
@@ -46,35 +81,43 @@ class App extends Component {
       <div className="App">
         <Logo data={data} />
 
+        {/* Uncomment to compare with the original */}
+        {/* {original} */}
+
         <DatGui data={data} onUpdate={this.handleUpdate}>
           {/* <DatString path="package" label="Package" /> */}
+          <DatNumber path="unit" label="Unit" min={19} max={23} step={0.01} />
+
+          <DatBoolean path="linkArms" label="Link arms" />
+          <DatBoolean path="showStuff" label="Show stuff" />
+
           <DatNumber
             path="translateX"
             label="Translate X"
-            min={0}
-            max={800}
-            step={1}
+            min={135}
+            max={140}
+            step={0.01}
           />
           <DatNumber
             path="translateY"
             label="Translate Y"
-            min={0}
-            max={600}
-            step={1}
+            min={135}
+            max={140}
+            step={0.01}
           />
 
           <DatNumber
             path="smallDig"
             label="Small dig"
-            min={0}
-            max={5}
+            min={-10}
+            max={10}
             step={0.1}
           />
           <DatNumber
             path="largeDig"
             label="Large dig"
-            min={0}
-            max={5}
+            min={-10}
+            max={10}
             step={0.1}
           />
 
@@ -83,6 +126,14 @@ class App extends Component {
             label="Middle dist"
             min={0}
             max={5}
+            step={0.1}
+          />
+
+          <DatNumber
+            path="switchLength"
+            label="Switch length"
+            min={-2.7}
+            max={2.7}
             step={0.1}
           />
 

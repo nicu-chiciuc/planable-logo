@@ -4,8 +4,10 @@ class Logo extends React.Component {
   render() {
     const { data } = this.props;
 
-    const u = 22;
-    const {
+    let {
+      unit,
+      linkArms,
+      showStuff,
       smallDig,
       largeDig,
       middleDist,
@@ -15,21 +17,36 @@ class Logo extends React.Component {
       largeArmRotation,
       smallColor,
       largeColor,
+      switchLength,
       middleColor
     } = data;
 
+    const u = unit;
+
+    smallDig -= switchLength;
+    largeDig += switchLength;
+
+    if (linkArms) {
+      // smallDig = (largeDig * largeDig) / (middleDist * Math.sqrt(2) + largeDig);
+      // smallDig = largeDig - middleDist * Math.sqrt(2);
+      largeDig = smallDig + middleDist * Math.sqrt(2);
+    }
+
+    const smallCircleDir = smallDig > 0 ? 1 : 0;
+    const longCircleDir = largeDig > 0 ? 1 : 0;
+
     const newSmall = `
       M ${u} 0
-      A ${u} ${u} 0 0 1 ${-u} 0
+      A ${u} ${u} 0 0 ${smallCircleDir} ${-u} 0
       L ${-u} ${-u * smallDig} 
-      A ${u} ${u} 0 0 1 ${u} ${-u * smallDig}
+      A ${u} ${u} 0 0 ${smallCircleDir} ${u} ${-u * smallDig}
     `;
 
     const newLarge = `
       M 0 ${u}
-      A ${u} ${u} 0 0 1 0 ${-u}
+      A ${u} ${u} 0 0 ${longCircleDir} 0 ${-u}
       L ${u * largeDig} ${-u}
-      A ${u} ${u} 0 0 1 ${u * largeDig} ${u}
+      A ${u} ${u} 0 0 ${longCircleDir} ${u * largeDig} ${u}
     `;
 
     const mainTransform = `translate(${data.translateX} ${
@@ -52,6 +69,11 @@ class Logo extends React.Component {
         ))}
       </g>
     );
+
+    const Dot = ({ x, y }) => {
+      console.log({ x, y });
+      return <circle cx={x} cy={y} fill="black" r="3" />;
+    };
 
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="600px">
@@ -79,6 +101,22 @@ class Logo extends React.Component {
               href="#shape_large"
               clipPath="url(#mask_small)"
             />
+
+            {showStuff && (
+              <>
+                <Dot key="mid" x={0} y={0} />
+                <Dot key="small" x={0} y={-u * smallDig} />
+                <Dot key="big" x={u * largeDig} y={0} />
+
+                <line
+                  x1={-u * largeDig}
+                  y1={-u * smallDig * 2}
+                  x2={u * largeDig * 2}
+                  y2={u * smallDig}
+                  stroke="black"
+                />
+              </>
+            )}
           </g>
 
           <g id="all_small" transform={mainTransform}>
