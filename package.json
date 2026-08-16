@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "build": "node --openssl-legacy-provider -e \"delete process.env.CI; require('./node_modules/react-scripts/scripts/build')\"",
     "deploy": "wrangler deploy",
     "deploy:preview": "wrangler versions upload",
     "test": "react-scripts test",

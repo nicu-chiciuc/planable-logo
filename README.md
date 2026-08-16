@@ -33,3 +33,11 @@ npm run build
 ```
 
 Create React App writes the production files to `build/`.
+
+## Deployment
+
+Run the build first. Both deployment commands publish `build/` through Cloudflare Workers Static
+Assets.
+
+- `npm run deploy` deploys to production.
+- `npm run deploy:preview` uploads a preview version without promoting it to production.
