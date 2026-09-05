@@ -92,6 +92,17 @@ class App extends Component {
     return (
       <div className="App">
         <Logo data={state.data} time={state.time} />
+        <a
+          className="samebase-attribution"
+          href="https://samebase.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Managed with Samebase"
+        >
+          <span>Managed with</span>
+          <img src={`${process.env.PUBLIC_URL}/samebase-logo.svg`} alt="" />
+          <span>Samebase</span>
+        </a>
 
         {/* Uncomment to compare with the original */}
         {/* {original} */}
