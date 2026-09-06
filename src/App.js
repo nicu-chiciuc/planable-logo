@@ -35,6 +35,40 @@ function toRgba(rgb, alpha) {
   return c;
 }
 
+function SamebaseAttribution() {
+  return (
+    <li className="samebase-attribution-row">
+      <a
+        className="samebase-attribution"
+        href="https://samebase.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="samebase-attribution-text">
+          Managed with{" "}
+          <b>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 60 60"
+              width="0.75em"
+              height="0.75em"
+              shapeRendering="crispEdges"
+              aria-hidden="true"
+            >
+              <path
+                d="M0 0h60v60H0z M20 20h20v20H20z"
+                fill="currentColor"
+                fillRule="evenodd"
+              />
+            </svg>
+            Samebase
+          </b>
+        </span>
+      </a>
+    </li>
+  );
+}
+
 class App extends Component {
   state = {
     time: null,
@@ -92,17 +126,6 @@ class App extends Component {
     return (
       <div className="App">
         <Logo data={state.data} time={state.time} />
-        <a
-          className="samebase-attribution"
-          href="https://samebase.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Managed with Samebase"
-        >
-          <span>Managed with</span>
-          <img src={`${process.env.PUBLIC_URL}/samebase-logo.svg`} alt="" />
-          <span>Samebase</span>
-        </a>
 
         {/* Uncomment to compare with the original */}
         {/* {original} */}
@@ -194,6 +217,7 @@ class App extends Component {
           <DatColor path="smallColor" label="Small Arm Color" />
           <DatColor path="largeColor" label="Large Arm Color" />
           <DatColor path="middleColor" label="Middle Color" />
+          <SamebaseAttribution />
 
           {/* <DatBoolean path="isAwesome" label="Awesome?" />*/}
         </DatGui>

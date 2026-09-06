@@ -2,24 +2,36 @@
   text-align: center;
 }
 
-.samebase-attribution {
-  align-items: center;
-  bottom: max(8px, env(safe-area-inset-bottom));
-  color: #394447;
-  display: inline-flex;
-  font-size: 12px;
-  gap: 4px;
-  left: max(8px, env(safe-area-inset-left));
-  min-height: 44px;
-  padding: 0 10px;
-  position: fixed;
-  text-decoration: none;
-  z-index: 1001;
+.samebase-attribution-row {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 8px;
 }
 
-.samebase-attribution img {
-  height: 14px;
-  width: 14px;
+.samebase-attribution {
+  align-items: center;
+  color: #aaa;
+  display: inline-flex;
+  min-height: 44px;
+  text-decoration: none;
+}
+
+.samebase-attribution-text {
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.samebase-attribution:hover .samebase-attribution-text {
+  border-bottom-color: currentcolor;
+}
+
+.samebase-attribution svg {
+  display: inline-block;
+  height: 0.75em;
+  margin-right: 0.15em;
+  vertical-align: baseline;
+  width: 0.75em;
 }
 
 .samebase-attribution:focus-visible {
