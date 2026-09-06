@@ -29,7 +29,10 @@
 .samebase-attribution svg {
   display: inline-block;
   height: 0.75em;
+  left: auto;
   margin-right: 0.15em;
+  position: static;
+  top: auto;
   vertical-align: baseline;
   width: 0.75em;
 }
