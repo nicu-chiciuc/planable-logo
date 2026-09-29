@@ -11,13 +11,13 @@
   },
   "devDependencies": {
     "cross-env": "7.0.3",
-    "wrangler": "4.123.0"
+    "wrangler": "4.136.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "cross-env CI=false NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "deploy": "wrangler deploy",
-    "deploy:preview": "wrangler versions upload",
+    "deploy:preview": "wrangler preview",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
