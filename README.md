@@ -40,4 +40,12 @@ Run the build first. Both deployment commands publish `build/` through Cloudflar
 Assets.
 
 - `npm run deploy` deploys to production.
-- `npm run deploy:preview` uploads a preview version without promoting it to production.
+- `npm run deploy:preview` deploys a Worker Preview without changing production.
+
+## Cloudflare Worker Previews
+
+Workers Builds runs the `build` script, then `deploy` for production or
+`deploy:preview` for other branches. This app uses static assets and needs no Convex keys.
+
+See the [Worker Previews migration guide](https://samebase.com/docs/cloudflare-previews-migration)
+to switch an existing Worker.
