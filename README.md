@@ -41,6 +41,8 @@ GitHub Actions builds this app with Node 24 and deploys it with Alchemy. A push 
 Each same-repository pull request deploys `planable-logo-pr-<number>`; closing
 or merging the pull request removes that preview Worker.
 
+Alchemy serves the files in `build/` with no fallback for missing paths.
+
 The stack uses the `nicu` Convex team for deployment state. GitHub Actions needs
 `CONVEX_ACCESS_TOKEN`, `CLOUDFLARE_API_TOKEN`, and `CLOUDFLARE_ACCOUNT_ID`.
 The production Worker is retained if its stack is removed. Cloudflare Workers
