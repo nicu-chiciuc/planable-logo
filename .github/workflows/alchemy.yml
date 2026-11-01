@@ -6,7 +6,7 @@ on:
 permissions: { contents: read, pull-requests: write }
 jobs:
   alchemy:
-    uses: samebase/samebase/.github/workflows/alchemy-deploy.yml@c8b2b5d3e72ca709ed73471b7bdf357b25889e84
+    uses: samebase/samebase/.github/workflows/alchemy-deploy.yml@067fad602640e61105704d9a2f8eb883886da8c4
     with: { adopt: "${{ inputs.adopt == true }}", build: npm run build, detect-drift: true }
     secrets:
       CONVEX_ACCESS_TOKEN: ${{ secrets.CONVEX_ACCESS_TOKEN }}
