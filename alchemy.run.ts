@@ -7,7 +7,7 @@ export default Alchemy.Stack(
   "nicu-chiciuc/planable-logo",
   {
     providers: Cloudflare.providers(),
-    state: Convex.state({ team: "nicu" }),
+    state: Convex.withRunRecord(Convex.state()),
   },
   Effect.gen(function* () {
     const { stage } = yield* Alchemy.Stack;
